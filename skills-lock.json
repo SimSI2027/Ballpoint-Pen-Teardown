@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "teardown": {
+      "source": "elvarofficial/teardown",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "9ca8e6eca8d463662680485d3c7ea13f1681141f0a2cdd1f5d98cdbc2b0fcf2f"
+    }
+  }
+}
