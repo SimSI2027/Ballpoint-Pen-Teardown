@@ -16,3 +16,6 @@ screenshots/*.webp
 output/*
 !output/README.md
 !output/.gitkeep
+
+# machine-specific shortcuts created by Install-Shortcuts.ps1
+*.lnk

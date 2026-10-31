@@ -47,6 +47,17 @@ npm run preview    # serve the build at http://127.0.0.1:4173/
 
 Playwright needs its Chromium once: `npx playwright install chromium`.
 
+## Fastest way to run on Windows
+
+Right-click `Install-Shortcuts.ps1` and choose **Run with PowerShell** once. It creates three shortcuts in the project folder:
+
+- **Launch Ballpoint Pen Demo** - starts the dev server and opens the browser
+- **Build and Preview Demo** - production build and preview
+- **Export Demo Video** - renders the MP4 and contact sheet
+
+The `.lnk` files contain machine-specific paths, so they are local and not stored in Git (re-run the installer after moving the folder).
+Every push to `main` automatically rebuilds and redeploys the newest simulator through GitHub Pages.
+
 ## One-click Windows launchers
 
 Double-click from Explorer (no Administrator, no permanent execution-policy change; each `.cmd` runs its `.ps1` for that process only):

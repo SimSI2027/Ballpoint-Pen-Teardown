@@ -47,3 +47,10 @@
 - Do not create a release until tests pass.
 - Before a release, report tests run, results, and paths not tested.
 - Keep generated video and large temporary artifacts out of Git unless explicitly requested.
+
+## Public demo maintenance
+- GitHub Pages is the canonical public demo.
+- Any future release or user-visible change must be pushed to main.
+- The Pages workflow must be allowed to complete successfully.
+- Before reporting a release complete, verify that the live GitHub Pages deployment corresponds to the newest main commit.
+- Never leave the public demo intentionally behind the newest stable version.
