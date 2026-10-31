@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Click Pen Teardown</title>
+  <meta name="description" content="Interactive 3D teardown of a generic rotating-cam retractable ballpoint pen. Placeholder dimensions." />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>Click Pen Teardown</h1>
+    <p>Generic rotating-cam retractable ballpoint pen &middot; <strong>placeholder dimensions &amp; estimated forces, not a real product</strong></p>
+  </header>
+
+  <section id="stage" aria-label="3D pen">
+    <canvas id="gl"></canvas>
+    <svg id="leaders" aria-hidden="true"></svg>
+    <div id="labels" aria-hidden="true"></div>
+    <div id="tourbadge" hidden></div>
+    <div id="caption" aria-live="polite"></div>
+    <div id="error" role="alert" hidden>
+      <h2>3D view unavailable</h2>
+      <p>This page needs WebGL, and the browser could not start it. Try a current Chrome, Edge or Firefox with hardware acceleration enabled. The readouts and controls below still follow the mechanism model.</p>
+    </div>
+  </section>
+
+  <aside id="side">
+    <h2>Live mechanism <small>(from the model)</small></h2>
+    <dl id="readouts">
+      <div><dt>Button travel</dt><dd id="r-button">—</dd></div>
+      <div><dt>Cartridge travel</dt><dd id="r-cartridge">—</dd></div>
+      <div><dt>Tip extension</dt><dd id="r-tip">—</dd></div>
+      <div><dt>Spring compression</dt><dd id="r-spring">—</dd></div>
+      <div><dt>Spring force <em>(est.)</em></dt><dd id="r-force">—</dd></div>
+      <div><dt>Cam angle</dt><dd id="r-cam">—</dd></div>
+      <div><dt>Latch state</dt><dd id="r-latch">—</dd></div>
+      <div class="wide"><dt>Phase</dt><dd id="r-phase">—</dd></div>
+    </dl>
+    <h3>Cartridge vs button travel</h3>
+    <canvas id="chart" width="320" height="160"></canvas>
+    <p class="legend"><span class="sw grey"></span>retracted-start press <span class="sw ink"></span>extended-start press <span class="sw acc"></span>now</p>
+    <p class="note">All dimensions are placeholder estimates. Spring force assumes a linear 0.25 N/mm spring and is an estimate, not a measurement.</p>
+  </aside>
+
+  <section id="controls">
+    <div class="row">
+      <button id="btn-click" class="primary" type="button">CLICK PEN <kbd>Space</kbd></button>
+      <button id="btn-cycle" type="button">Two-click cycle</button>
+      <label class="chk"><input id="chk-slow" type="checkbox" /> Slow</label>
+      <button id="btn-play" type="button" aria-pressed="false">Pause</button>
+      <button id="btn-reset" type="button">Reset <kbd>R</kbd></button>
+      <label class="chk"><input id="chk-labels" type="checkbox" checked /> Labels</label>
+    </div>
+    <div class="row sliders">
+      <label><span>Button travel <output id="o-travel">0%</output></span>
+        <input id="rng-travel" type="range" min="0" max="1000" value="0" step="1" /></label>
+      <label><span>Exploded view <kbd>E</kbd> <output id="o-explode">0%</output></span>
+        <input id="rng-explode" type="range" min="0" max="1000" value="0" step="1" /></label>
+    </div>
+    <div class="row">
+      <span class="group">View</span>
+      <button type="button" data-view="assembled">Assembled</button>
+      <button type="button" data-view="cutaway">Cutaway</button>
+      <button type="button" data-view="exploded">Exploded</button>
+      <button type="button" data-view="side">Side</button>
+      <button type="button" data-view="mechanism">Click mechanism</button>
+    </div>
+    <div class="row">
+      <span class="group">Isolate</span>
+      <button type="button" data-iso="button">Button + plunger</button>
+      <button type="button" data-iso="cam">Cam mechanism</button>
+      <button type="button" data-iso="springCartridge">Spring + cartridge</button>
+      <button type="button" data-iso="none">Show all</button>
+    </div>
+  </section>
+</div>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
