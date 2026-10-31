@@ -55,4 +55,4 @@ No video, no sound, no deployment, no rigid-body physics.
 - The film is silent, rendered with software WebGL (SwiftShader) and takes about 10 minutes; shadows and antialiasing may differ slightly from a GPU render.
 - Film visuals were inspected from a 12-frame contact sheet, not frame by frame; part intersections were checked only visually at those beats.
 - The Windows launchers were exercised on one machine (Windows 11, Node 24); the "port held by an unrelated program" path was not exercised interactively.
-- The GitHub Actions e2e step runs Chromium with SwiftShader on Ubuntu and has only been proven by the first workflow run.
+- `npm run test:e2e` is timing-based and failed 7 of 21 checks on the GitHub runner (slow software rendering), so CI runs `npm test`, the build and `npm run test:pages` only; the e2e passes locally.

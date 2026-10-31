@@ -60,7 +60,7 @@ Double-click from Explorer (no Administrator, no permanent execution-policy chan
 ## Deployment (GitHub Pages)
 
 `.github/workflows/deploy-pages.yml` runs on every push to `main` (and manually): `npm ci`, `npm test`,
-`npm run test:e2e`, `npm run build`, `npm run test:pages`, then publishes `dist/` with the official Pages actions. Production
+`npm run build`, `npm run test:pages`, then publishes `dist/` with the official Pages actions. The timing-based `npm run test:e2e` is run locally only: its wall-clock click assertions are not reliable under slow CI software rendering. Production
 builds use the base path `/Ballpoint-Pen-Teardown/`; local dev still serves at `/`.
 
 ## Video export
