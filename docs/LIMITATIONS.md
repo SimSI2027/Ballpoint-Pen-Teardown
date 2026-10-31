@@ -49,3 +49,10 @@
 
 ## Out of scope for v0.1.0
 No video, no sound, no deployment, no rigid-body physics.
+
+## v0.2.0 additions
+
+- The film is silent, rendered with software WebGL (SwiftShader) and takes about 10 minutes; shadows and antialiasing may differ slightly from a GPU render.
+- Film visuals were inspected from a 12-frame contact sheet, not frame by frame; part intersections were checked only visually at those beats.
+- The Windows launchers were exercised on one machine (Windows 11, Node 24); the "port held by an unrelated program" path was not exercised interactively.
+- The GitHub Actions e2e step runs Chromium with SwiftShader on Ubuntu and has only been proven by the first workflow run.

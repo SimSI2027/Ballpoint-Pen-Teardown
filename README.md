@@ -1,5 +1,7 @@
 # Click Pen Teardown
 
+> **Live demo: https://simsi2027.github.io/Ballpoint-Pen-Teardown/**
+
 An interactive 3D teardown of a **generic rotating-cam retractable ballpoint pen**, built
 procedurally in the browser with three.js. Press the button (or drag the scrubber) and watch the
 plunger, rotor (cam), cartridge, spring and tip move together while a live panel reads the same
@@ -45,6 +47,37 @@ npm run preview    # serve the build at http://127.0.0.1:4173/
 
 Playwright needs its Chromium once: `npx playwright install chromium`.
 
+## One-click Windows launchers
+
+Double-click from Explorer (no Administrator, no permanent execution-policy change; each `.cmd` runs its `.ps1` for that process only):
+
+| File | What it does |
+|---|---|
+| `Launch-Demo.cmd` | Checks Node/npm, runs `npm install` once if needed, starts the dev server at http://127.0.0.1:5173/ and opens the browser. If this project is already serving on 5173 it just opens the browser; if something else holds the port it says so. Ctrl+C stops it. |
+| `Build-And-Preview.cmd` | Builds for production and previews it at http://127.0.0.1:4173/Ballpoint-Pen-Teardown/ (the GitHub Pages subpath). Ctrl+C stops it. |
+| `Export-Video.cmd` | Runs the full video export (see below) and opens `output/`. |
+
+## Deployment (GitHub Pages)
+
+`.github/workflows/deploy-pages.yml` runs on every push to `main` (and manually): `npm ci`, `npm test`,
+`npm run test:e2e`, `npm run build`, `npm run test:pages`, then publishes `dist/` with the official Pages actions. Production
+builds use the base path `/Ballpoint-Pen-Teardown/`; local dev still serves at `/`.
+
+## Video export
+
+```
+npm run video            # or double-click Export-Video.cmd
+```
+
+Writes `output/ballpoint-pen-teardown-v<version>.mp4` (1920x1080, 60 fps, H.264, yuv420p, faststart, silent, ~29 s)
+and `output/ballpoint-pen-contact-sheet.jpg` (12 frames taken from the MP4). It is a deterministic film mode
+(`film.html`, `src/film/`): every frame is rendered by Playwright Chromium from an explicit frame index, with
+the mechanism advanced by the same `step()` as the simulator; camera, captions and highlights are film-only
+presentation. Frames are piped straight to FFmpeg (`npm run video -- --disk` renders numbered PNGs in
+`output/.frames-tmp` instead, deleted after a good encode). It prefers the system `ffmpeg`, then Playwright's
+bundled one if it has libx264, otherwise it stops and tells you to run `winget install --id Gyan.FFmpeg -e`.
+Rendering uses software WebGL and takes roughly 10 minutes. Output is git-ignored (see `output/README.md`).
+
 ## Controls
 
 | Control | Action |
@@ -67,7 +100,7 @@ The orange accent marks the part that is doing the work in the current mechanism
 ## Known limitations
 
 See `docs/LIMITATIONS.md` for the honest list. In short: generic mechanism, invented numbers,
-simplified cam geometry, no dynamics or friction, no real-pen reference, no video or sound.
+simplified cam geometry, no dynamics or friction, no real-pen reference, no sound. The exported film is silent and software-rendered.
 
 ## Project rules
 

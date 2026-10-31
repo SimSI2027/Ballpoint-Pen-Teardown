@@ -1,6 +1,6 @@
 {
   "name": "ballpoint-pen-teardown",
-  "version": "0.0.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Interactive 3D teardown of a generic rotating-cam retractable ballpoint pen (mechanism model first).",
   "type": "module",
@@ -12,7 +12,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test:e2e": "node tests/e2e/e2e.mjs"
+    "test:e2e": "node tests/e2e/e2e.mjs",
+    "test:pages": "node tests/e2e/pages.mjs",
+    "video": "node scripts/export-video.mjs"
   },
   "dependencies": {
     "three": "^0.186.1"

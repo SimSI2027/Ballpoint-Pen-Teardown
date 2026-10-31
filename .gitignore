@@ -11,3 +11,8 @@ screenshots/*.png
 screenshots/*.jpg
 screenshots/*.jpeg
 screenshots/*.webp
+
+# generated output (see output/README.md)
+output/*
+!output/README.md
+!output/.gitkeep
