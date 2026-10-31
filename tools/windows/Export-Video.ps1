@@ -1,7 +1,8 @@
 # One-click video export: renders the deterministic film and encodes MP4 + contact sheet into output/.
 # Windows PowerShell 5.1 compatible. No Administrator, no execution-policy change.
 $ErrorActionPreference = 'Stop'
-$ProjectDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$ProjectDir = Split-Path -Parent (Split-Path -Parent $ScriptDir)   # tools/windows -> project root
 Set-Location -LiteralPath $ProjectDir
 
 function Stop-WithError([string]$Message) {

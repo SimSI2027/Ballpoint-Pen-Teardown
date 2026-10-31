@@ -49,24 +49,25 @@ Playwright needs its Chromium once: `npx playwright install chromium`.
 
 ## Fastest way to run on Windows
 
-Right-click `Install-Shortcuts.ps1` and choose **Run with PowerShell** once. It creates three shortcuts in the project folder:
-
-- **Launch Ballpoint Pen Demo** - starts the dev server and opens the browser
-- **Build and Preview Demo** - production build and preview
-- **Export Demo Video** - renders the MP4 and contact sheet
+1. Clone or download the repository.
+2. Right-click `Install-Shortcuts.ps1` and choose **Run with PowerShell** (once).
+3. Use the generated local shortcuts in the project folder:
+   - **Launch Ballpoint Pen Demo** - starts the dev server at http://127.0.0.1:5173/ and opens the browser (opens it directly if this project is already serving there)
+   - **Build and Preview Demo** - production build and preview at http://127.0.0.1:4173/Ballpoint-Pen-Teardown/
+   - **Export Demo Video** - renders the MP4 and contact sheet (see Video export)
 
 The `.lnk` files contain machine-specific paths, so they are local and not stored in Git (re-run the installer after moving the folder).
 Every push to `main` automatically rebuilds and redeploys the newest simulator through GitHub Pages.
 
-## One-click Windows launchers
+Or run the scripts directly (no Administrator, no permanent execution-policy change; Ctrl+C stops a server):
 
-Double-click from Explorer (no Administrator, no permanent execution-policy change; each `.cmd` runs its `.ps1` for that process only):
+```
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\tools\windows\Launch-Demo.ps1"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\tools\windows\Build-And-Preview.ps1"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\tools\windows\Export-Video.ps1"
+```
 
-| File | What it does |
-|---|---|
-| `Launch-Demo.cmd` | Checks Node/npm, runs `npm install` once if needed, starts the dev server at http://127.0.0.1:5173/ and opens the browser. If this project is already serving on 5173 it just opens the browser; if something else holds the port it says so. Ctrl+C stops it. |
-| `Build-And-Preview.cmd` | Builds for production and previews it at http://127.0.0.1:4173/Ballpoint-Pen-Teardown/ (the GitHub Pages subpath). Ctrl+C stops it. |
-| `Export-Video.cmd` | Runs the full video export (see below) and opens `output/`. |
+The scripts check Node/npm and run `npm install` once if `node_modules` is missing.
 
 ## Deployment (GitHub Pages)
 
@@ -77,7 +78,7 @@ builds use the base path `/Ballpoint-Pen-Teardown/`; local dev still serves at `
 ## Video export
 
 ```
-npm run video            # or double-click Export-Video.cmd
+npm run video            # or use the Export Demo Video shortcut
 ```
 
 Writes `output/ballpoint-pen-teardown-v<version>.mp4` (1920x1080, 60 fps, H.264, yuv420p, faststart, silent, ~29 s)

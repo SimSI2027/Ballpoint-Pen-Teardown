@@ -5,9 +5,9 @@ $Root = $PSScriptRoot
 if (-not $Root) { $Root = Split-Path -Parent $MyInvocation.MyCommand.Path }
 
 $items = @(
-    @{ Name = 'Launch Ballpoint Pen Demo'; Script = 'Launch-Demo.ps1' },
-    @{ Name = 'Build and Preview Demo';    Script = 'Build-And-Preview.ps1' },
-    @{ Name = 'Export Demo Video';         Script = 'Export-Video.ps1' }
+    @{ Name = 'Launch Ballpoint Pen Demo'; Script = 'tools\windows\Launch-Demo.ps1' },
+    @{ Name = 'Build and Preview Demo';    Script = 'tools\windows\Build-And-Preview.ps1' },
+    @{ Name = 'Export Demo Video';         Script = 'tools\windows\Export-Video.ps1' }
 )
 
 foreach ($i in $items) {

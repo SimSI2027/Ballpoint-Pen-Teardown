@@ -1,7 +1,8 @@
 # One-click production preview: npm run build, then vite preview, then open the browser.
 # Windows PowerShell 5.1 compatible. No Administrator, no execution-policy change.
 $ErrorActionPreference = 'Stop'
-$ProjectDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$ProjectDir = Split-Path -Parent (Split-Path -Parent $ScriptDir)   # tools/windows -> project root
 Set-Location -LiteralPath $ProjectDir
 # The production build uses the GitHub Pages subpath, so the preview lives under it too.
 $Url = 'http://127.0.0.1:4173/Ballpoint-Pen-Teardown/'

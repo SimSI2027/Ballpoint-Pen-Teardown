@@ -1,7 +1,8 @@
 # One-click dev demo: starts the Vite dev server on 127.0.0.1:5173 and opens the browser.
 # Windows PowerShell 5.1 compatible. Does not need Administrator; does not change execution policy.
 $ErrorActionPreference = 'Stop'
-$ProjectDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$ProjectDir = Split-Path -Parent (Split-Path -Parent $ScriptDir)   # tools/windows -> project root
 Set-Location -LiteralPath $ProjectDir
 $Url = 'http://127.0.0.1:5173/'
 
